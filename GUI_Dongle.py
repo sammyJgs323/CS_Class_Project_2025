@@ -21,6 +21,7 @@ class DongleLockWindow(QWidget):
         self.serial_conn: Optional[serial.Serial] = None
         self.handshake_complete: bool = False
         self.get_code_buttons: list[QPushButton] = []
+        self.disconnect_button: Optional[QPushButton] = None
         # Test mode toggle: Set True to simulate STM32 responses without hardware.
         # When ready to test with the actual STM32 device, set this to False.
         self.test_mode = True
@@ -46,6 +47,11 @@ class DongleLockWindow(QWidget):
             button.clicked.connect(lambda _checked, index=idx: self._handle_get_code(index))
             layout.addWidget(button)
             self.get_code_buttons.append(button)
+
+        self.disconnect_button = QPushButton("Disconnect")
+        self.disconnect_button.setEnabled(False)
+        self.disconnect_button.clicked.connect(self._handle_disconnect)
+        layout.addWidget(self.disconnect_button)
 
         self.setLayout(layout)
 
@@ -75,6 +81,7 @@ class DongleLockWindow(QWidget):
             ):
                 if self.status_label is not None:
                     self.status_label.setText("Handshake already established with STM32.")
+                self._set_disconnect_enabled(True)
                 return
 
             self.establish_handshake()
@@ -85,6 +92,7 @@ class DongleLockWindow(QWidget):
                 self.status_label.setText("No STM32-compatible serial port detected.")
             self.handshake_complete = False
             self._set_get_code_buttons_enabled(False)
+            self._set_disconnect_enabled(False)
 
     def establish_handshake(self) -> None:
         """Open a serial connection to perform an STM32 handshake."""
@@ -104,6 +112,7 @@ class DongleLockWindow(QWidget):
                 self.serial_conn = None
                 self.handshake_complete = False
                 self._set_get_code_buttons_enabled(False)
+                self._set_disconnect_enabled(False)
                 return
             except OSError as exc:
                 if self.status_label is not None:
@@ -111,6 +120,7 @@ class DongleLockWindow(QWidget):
                 self.serial_conn = None
                 self.handshake_complete = False
                 self._set_get_code_buttons_enabled(False)
+                self._set_disconnect_enabled(False)
                 return
             connection = self.serial_conn
 
@@ -119,6 +129,7 @@ class DongleLockWindow(QWidget):
                 self.status_label.setText("Failed to open serial connection.")
             self.handshake_complete = False
             self._set_get_code_buttons_enabled(False)
+            self._set_disconnect_enabled(False)
             return
 
         # Perform handshake sequence: send CONNECT and await OK response.
@@ -135,6 +146,7 @@ class DongleLockWindow(QWidget):
                     self.status_label.setText(f"Serial error: {exc}")
                 self.handshake_complete = False
                 self._set_get_code_buttons_enabled(False)
+                self._set_disconnect_enabled(False)
                 return
 
         if self.status_label is None:
@@ -144,18 +156,25 @@ class DongleLockWindow(QWidget):
             self.status_label.setText("Handshake successful with STM32.")
             self.handshake_complete = True
             self._set_get_code_buttons_enabled(True)
+            self._set_disconnect_enabled(True)
         elif response:
             self.status_label.setText(f"Unexpected response: {response}")
             self.handshake_complete = False
             self._set_get_code_buttons_enabled(False)
+            self._set_disconnect_enabled(False)
         else:
             self.status_label.setText("No response received from STM32.")
             self.handshake_complete = False
             self._set_get_code_buttons_enabled(False)
+            self._set_disconnect_enabled(False)
 
     def _set_get_code_buttons_enabled(self, enabled: bool) -> None:
         for button in self.get_code_buttons:
             button.setEnabled(enabled)
+
+    def _set_disconnect_enabled(self, enabled: bool) -> None:
+        if self.disconnect_button is not None:
+            self.disconnect_button.setEnabled(enabled)
 
     def _handle_get_code(self, code_index: int) -> None:
         if self.serial_conn is None or not self.serial_conn.is_open:
@@ -227,6 +246,28 @@ class DongleLockWindow(QWidget):
                 self.status_label.setText("No confirmation received after saving code.")
         else:
             self.status_label.setText(f"Unexpected response: {response}")
+
+    def _handle_disconnect(self) -> None:
+        if self.serial_conn is not None and self.serial_conn.is_open:
+            try:
+                self.serial_conn.close()
+            except serial.SerialException:
+                pass
+            self.serial_conn = None
+
+        self.handshake_complete = False
+        self.detected_port = None
+        self._set_get_code_buttons_enabled(False)
+        self._set_disconnect_enabled(False)
+        if self.connect_button is not None:
+            self.connect_button.setEnabled(False)
+
+        pyperclip.copy("")
+
+        if self.status_label is not None:
+            self.status_label.setText("Disconnected. Clipboard cleared.")
+
+        self.close()
 
 
 def main() -> None:
