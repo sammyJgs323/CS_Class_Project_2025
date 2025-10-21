@@ -5,7 +5,7 @@ import serial
 import pyperclip
 from serial.tools import list_ports
 
-from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget, QInputDialog
 
 
 class DongleLockWindow(QWidget):
@@ -167,7 +167,12 @@ class DongleLockWindow(QWidget):
 
         try:
             self.serial_conn.write(command)
-            response_bytes = self.serial_conn.readline()
+            if self.test_mode:
+                # Simulate STM32 response when in test mode
+                response = "NOT_FOUND"
+                response_bytes = response.encode("utf-8")
+            else:
+                response_bytes = self.serial_conn.readline()
         except serial.SerialException as exc:
             if self.status_label is not None:
                 self.status_label.setText(f"Serial error: {exc}")
@@ -189,6 +194,37 @@ class DongleLockWindow(QWidget):
             self.status_label.setText(f"Code {code_index} copied to clipboard: {code}")
         elif response == "NOT_FOUND":
             self.status_label.setText(f"Code {code_index} not found on device.")
+            new_code, accepted = QInputDialog.getText(
+                self,
+                "Set Code",
+                f"Enter new code for Code {code_index}:",
+            )
+
+            if not accepted or not new_code.strip():
+                self.status_label.setText("Code entry cancelled.")
+                return
+
+            code_value = new_code.strip()
+            set_command = f"SET_CODE_{code_index}:{code_value}\n".encode("utf-8")
+
+            try:
+                self.serial_conn.write(set_command)
+                confirmation_bytes = self.serial_conn.readline()
+            except serial.SerialException as exc:
+                self.status_label.setText(f"Serial error while saving: {exc}")
+                return
+
+            confirmation = confirmation_bytes.decode("utf-8", errors="replace").strip()
+
+            if confirmation == "SAVED":
+                pyperclip.copy(code_value)
+                self.status_label.setText(
+                    f"Code {code_index} saved and copied to clipboard: {code_value}"
+                )
+            elif confirmation:
+                self.status_label.setText(f"Unexpected response after saving: {confirmation}")
+            else:
+                self.status_label.setText("No confirmation received after saving code.")
         else:
             self.status_label.setText(f"Unexpected response: {response}")
 
