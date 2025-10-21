@@ -1,6 +1,7 @@
 import sys
 from typing import Optional
 
+import serial
 from serial.tools import list_ports
 
 from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget
@@ -50,12 +51,45 @@ class DongleLockWindow(QWidget):
             if self.connect_label is not None:
                 self.connect_label.setText(f"STM32 detected on {self.detected_port}")
             if self.status_label is not None:
-                self.status_label.setText("Ready to establish connection.")
+                self.status_label.setText("Attempting handshake with STM32...")
+            self.establish_handshake()
         else:
             if self.connect_label is not None:
                 self.connect_label.setText("Device Not Found")
             if self.status_label is not None:
                 self.status_label.setText("No STM32-compatible serial port detected.")
+
+    def establish_handshake(self) -> None:
+        """Open a serial connection to perform an STM32 handshake."""
+        if self.detected_port is None:
+            if self.status_label is not None:
+                self.status_label.setText("No detected port available for handshake.")
+            return
+
+        try:
+            with serial.Serial(self.detected_port, baudrate=115200, timeout=2) as connection:
+                connection.write(b"CONNECT\n")
+                response_bytes = connection.readline()
+        except serial.SerialException as exc:
+            if self.status_label is not None:
+                self.status_label.setText(f"Serial error: {exc}")
+            return
+        except OSError as exc:
+            if self.status_label is not None:
+                self.status_label.setText(f"I/O error: {exc}")
+            return
+
+        response = response_bytes.decode("utf-8", errors="replace").strip()
+
+        if self.status_label is None:
+            return
+
+        if response == "OK":
+            self.status_label.setText("Handshake successful with STM32.")
+        elif response:
+            self.status_label.setText(f"Unexpected response: {response}")
+        else:
+            self.status_label.setText("No response received from STM32.")
 
 
 def main() -> None:
