@@ -2,6 +2,7 @@ import sys
 from typing import Optional
 
 import serial
+import pyperclip
 from serial.tools import list_ports
 
 from PyQt5.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget
@@ -20,6 +21,9 @@ class DongleLockWindow(QWidget):
         self.serial_conn: Optional[serial.Serial] = None
         self.handshake_complete: bool = False
         self.get_code_buttons: list[QPushButton] = []
+        # Test mode toggle: Set True to simulate STM32 responses without hardware.
+        # When ready to test with the actual STM32 device, set this to False.
+        self.test_mode = True
 
         self._build_ui()
 
@@ -117,17 +121,21 @@ class DongleLockWindow(QWidget):
             self._set_get_code_buttons_enabled(False)
             return
 
-        try:
-            connection.write(b"CONNECT\n")
-            response_bytes = connection.readline()
-        except serial.SerialException as exc:
-            if self.status_label is not None:
-                self.status_label.setText(f"Serial error: {exc}")
-            self.handshake_complete = False
-            self._set_get_code_buttons_enabled(False)
-            return
-
-        response = response_bytes.decode("utf-8", errors="replace").strip()
+        # Perform handshake sequence: send CONNECT and await OK response.
+        # When test_mode is enabled, this simulates an STM32 response.
+        if self.test_mode:
+            response = "OK"
+        else:
+            try:
+                connection.write(b"CONNECT\n")
+                response_bytes = connection.readline()
+                response = response_bytes.decode("utf-8", errors="replace").strip()
+            except serial.SerialException as exc:
+                if self.status_label is not None:
+                    self.status_label.setText(f"Serial error: {exc}")
+                self.handshake_complete = False
+                self._set_get_code_buttons_enabled(False)
+                return
 
         if self.status_label is None:
             return
@@ -150,7 +158,39 @@ class DongleLockWindow(QWidget):
             button.setEnabled(enabled)
 
     def _handle_get_code(self, code_index: int) -> None:
-        print(f"Get Code {code_index} pressed")
+        if self.serial_conn is None or not self.serial_conn.is_open:
+            if self.status_label is not None:
+                self.status_label.setText("Serial connection not available. Please reconnect.")
+            return
+
+        command = f"GET_CODE_{code_index}\n".encode("utf-8")
+
+        try:
+            self.serial_conn.write(command)
+            response_bytes = self.serial_conn.readline()
+        except serial.SerialException as exc:
+            if self.status_label is not None:
+                self.status_label.setText(f"Serial error: {exc}")
+            return
+
+        response = response_bytes.decode("utf-8", errors="replace").strip()
+
+        if self.status_label is None:
+            return
+
+        if not response:
+            self.status_label.setText(f"No response received for Code {code_index}.")
+            return
+
+        if response.startswith("CODE:"):
+            _, _, code = response.partition("CODE:")
+            code = code.strip()
+            pyperclip.copy(code)
+            self.status_label.setText(f"Code {code_index} copied to clipboard: {code}")
+        elif response == "NOT_FOUND":
+            self.status_label.setText(f"Code {code_index} not found on device.")
+        else:
+            self.status_label.setText(f"Unexpected response: {response}")
 
 
 def main() -> None:
