@@ -15,6 +15,11 @@
   *
   ******************************************************************************
   */
+	/* EEE3095S
+	 * CS Class Project 2025
+	 * PFFTAH001, SMLJOS008
+	 *
+	 * */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -107,7 +112,7 @@ int main(void)
   bool connected = false;
 
   //buffer for incoming UART data/ commands
-  char dataBuff[128]
+  char dataBuff[128];
 
   /* USER CODE END 2 */
 
