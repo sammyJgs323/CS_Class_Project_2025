@@ -173,13 +173,13 @@ int main(void)
 
 	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && dataBuff[10] == '\0') {
 	    	  // convert '1','2','3' to 0,1,2
-	        int index = codeIndexChar - '1';
+	        int idx = codeIndexChar - '1';
 
-	        if (accessCodes[index][0] != '\0') {
+	        if (accessCodes[idx][0] != '\0') {
 	          // if code exists send it back prefixed with "CODE:"
-	          char txBuffer[128];
-	          snprintf(txBuffer, sizeof(txBuffer), "CODE:%s\n", accessCodes[index]);
-	          HAL_UART_Transmit(&huart1, (uint8_t*)txBuffer, strlen(txBuffer), HAL_MAX_DELAY);
+	          char codeBuff[128];
+	          snprintf(codeBuff, sizeof(codeBuff), "CODE:%s\n", accessCodes[idx]);
+	          HAL_UART_Transmit(&huart1, (uint8_t*)codeBuff, strlen(codeBuff), HAL_MAX_DELAY);
 	        } else {
 	          // if code not set respond with NOT_FOUND
 	          const char *resp = "NOT_FOUND\n";
@@ -191,23 +191,23 @@ int main(void)
 	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
 	      }
 	    }
-	    else if (strncmp(rxBuffer, "SET_CODE_", 9) == 0) {
+	    else if (strncmp(dataBuff, "SET_CODE_", 9) == 0) {
 	      // SET_CODE_n:value command: store a new code value
 	    	// the character representing code index
 	      char codeIndexChar = dataBuff[9];
 
 	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && dataBuff[10] == ':') {
 	    	  // target index 0-2
-	        int index = codeIndexChar - '1';
+	        int idx = codeIndexChar - '1';
 	        // pointer to the code value after the SET_CODE_n prefix
-	        char *codeValue = &rxBuffer[11];
+	        char *codeValue = &dataBuff[11];
 	        // save the new code up to MAX_Len characters
 	        if (strlen(codeValue) <= MAX_LEN) {
-	          strcpy(accessCodes[index], codeValue);
+	          strcpy(accessCodes[idx], codeValue);
 	        } else {
-	          strncpy(accessCodes[index], codeValue, MAX_LEN);
+	          strncpy(accessCodes[idx], codeValue, MAX_LEN);
 	          // ensure termination if truncated
-	          accessCodes[index][MAX_LEN] = '\0';
+	          accessCodes[idx][MAX_LEN] = '\0';
 	        }
 	        // respond to confirm the code is saved
 	        const char *resp = "SAVED\n";
@@ -250,7 +250,14 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  //RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 16;
+  RCC_OscInitStruct.PLL.PLLN = 336;
+  // 16 MHz * 336 / 4 = 84 MHz
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -260,9 +267,13 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  //system clock= PLL 84MHz
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  //HCLK=84 MHz
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  //APB1=42 MHz
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  //APB2=84 MHz
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
@@ -280,6 +291,21 @@ static void MX_USART1_UART_Init(void)
 {
 
   /* USER CODE BEGIN USART1_Init 0 */
+	/* Enable UART and GPIO clocks */
+	 __HAL_RCC_USART1_CLK_ENABLE();
+	 __HAL_RCC_GPIOA_CLK_ENABLE();
+
+	  /* Configure PA9  and PA10 as alternate function UART pins */
+	  GPIO_InitTypeDef GPIO_InitStruct = {0};
+	  GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_10;
+	  // push-pull alternate function
+	  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+	  // no pull-up or pull-down resistors
+	  GPIO_InitStruct.Pull = GPIO_NOPULL;
+	  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+	  // AF7 for USART1 pins
+	  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
+	  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* USER CODE END USART1_Init 0 */
 
