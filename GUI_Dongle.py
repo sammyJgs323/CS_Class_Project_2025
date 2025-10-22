@@ -125,6 +125,7 @@ class DongleLockWindow(QWidget):
         """Attempt to locate an attached STM32 device via serial."""
         self.detected_port = None
 
+        # Scan all serial ports and look for STM device
         candidate_port = None
         for port_info in list_ports.comports():
             description = (port_info.description or "").upper()
@@ -168,6 +169,7 @@ class DongleLockWindow(QWidget):
 
         if connection is None or not connection.is_open or connection.port != self.detected_port:
             try:
+                # Open serial connection and initiate handshake
                 self.serial_conn = serial.Serial(self.detected_port, baudrate=115200, timeout=2)
             except serial.SerialException as exc:
                 self._update_status(f"Serial error: {exc}")
@@ -209,6 +211,7 @@ class DongleLockWindow(QWidget):
                 self._set_disconnect_enabled(False)
                 return
 
+        # Check for OK handshake response
         if response == "OK":
             self._update_status("Handshake successful with STM32.")
             self.handshake_complete = True
@@ -264,6 +267,7 @@ class DongleLockWindow(QWidget):
             self._update_status("Serial connection not available. Please reconnect.")
             return
 
+        # Send GET request for a specific code index
         command = f"GET_CODE_{code_index}\n".encode("utf-8")
 
         self._update_status(f"Requesting Code {code_index} from STM32...")
@@ -285,11 +289,13 @@ class DongleLockWindow(QWidget):
             self._update_status(f"No response received for Code {code_index}.")
             return
 
+        # If code is found, copy to clipboard
         if response.startswith("CODE:"):
             _, _, code = response.partition("CODE:")
             code = code.strip()
             pyperclip.copy(code)
             self._update_status(f"Code {code_index} copied to clipboard: {code}")
+        # If code doesn't exist, prompt user to enter new code
         elif response == "NOT_FOUND":
             self._update_status(f"Code {code_index} not found on device.")
             new_code, accepted = QInputDialog.getText(
@@ -320,6 +326,7 @@ class DongleLockWindow(QWidget):
                 self._update_status(f"Serial error while saving: {exc}")
                 return
 
+            # Copy retrieved or saved code to clipboard
             if confirmation == "SAVED":
                 pyperclip.copy(code_value)
                 self._update_status(
@@ -333,6 +340,7 @@ class DongleLockWindow(QWidget):
             self._update_status(f"Unexpected response: {response}")
 
     def _handle_disconnect(self) -> None:
+        # Handle disconnect and clear clipboard
         if self.serial_conn is not None and self.serial_conn.is_open:
             try:
                 self.serial_conn.close()
@@ -347,7 +355,7 @@ class DongleLockWindow(QWidget):
         if self.connect_button is not None:
             self.connect_button.setEnabled(False)
 
-        pyperclip.copy("")
+        pyperclip.copy("")  # Clear clipboard
 
         self._update_status("Disconnected. Clipboard cleared.")
 
