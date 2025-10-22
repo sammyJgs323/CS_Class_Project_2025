@@ -18,6 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <string.h>
+#include <stdbool.h>
+#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -40,7 +43,11 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+//UART handle for USART1
 UART_HandleTypeDef huart1;
+
+//max length for each access code
+#define MAX_LEN 100
 
 /* USER CODE BEGIN PV */
 
@@ -91,6 +98,17 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
+
+  //buffer for three access codes (each up to 100 chars + null terminator)
+  char accessCodes[3][MAX_LEN + 1];
+  memset(accessCodes, 0, sizeof(accessCodes));  // initialize all codes as empty
+
+  //connection state, true after connect false after disconnect
+  bool connected = false;
+
+  //buffer for incoming UART data/ commands
+  char dataBuff[128]
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,6 +118,114 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	    //receive a line (command) from UART
+	    char c;
+	    uint16_t i = 0;
+	    // Read characters one by one until newline ('\n') is received
+	    do {
+	      if (HAL_UART_Receive(&huart1, (uint8_t*)&c, 1, HAL_MAX_DELAY) != HAL_OK) {
+	        Error_Handler();  // In case of UART error, halt (could also continue to next loop)
+	      }
+	      if (c == '\r') {
+	    	  // skip carriage return if present
+	        continue;
+	      }
+	      if (c == '\n') {
+	    	  // newline indicates end of command
+	        break;
+	      }
+	      if (i < sizeof(dataBuff) - 1) {
+	    	  // append character to buffer if space allows
+	        dataBuff[i++] = c;
+	      } else {
+	        // buffer overflow if line too long then truncate and break
+	        dataBuff[i] = '\0';
+	        break;
+	      }
+	    } while (1);
+	    // null-terminate the received string
+	    dataBuff[i] = '\0';
+
+	    //parse and handle the command in dataBuff
+	    if (strcmp(dataBuff, "CONNECT") == 0) {
+	      // CONNECT command: establish connection
+	      connected = true;
+	      const char *resp = "OK\n";
+	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	    }
+	    else if (!connected) {
+	      // if not connected yet, only CONNECT is valid and respond with error for any other command
+	      const char *resp = "ERROR\n";
+	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	    }
+	    else if (strcmp(dataBuff, "DISCONNECT") == 0) {
+	      // DISCONNECT command: end session
+	      connected = false;
+	      const char *resp = "OK\n";
+	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      // after disconnect the device stays running and can accept a new CONNECT
+	    }
+	    else if (strncmp(dataBuff, "GET_CODE_", 9) == 0) {
+	      // GET_CODE_n command: retrieve a code if it exists
+	      // expect exactly one digit (1-3) after "GET_CODE_"
+	    	// the character representing code index
+	      char codeIndexChar = dataBuff[9];
+
+	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && dataBuff[10] == '\0') {
+	    	  // convert '1','2','3' to 0,1,2
+	        int index = codeIndexChar - '1';
+
+	        if (accessCodes[index][0] != '\0') {
+	          // if code exists send it back prefixed with "CODE:"
+	          char txBuffer[128];
+	          snprintf(txBuffer, sizeof(txBuffer), "CODE:%s\n", accessCodes[index]);
+	          HAL_UART_Transmit(&huart1, (uint8_t*)txBuffer, strlen(txBuffer), HAL_MAX_DELAY);
+	        } else {
+	          // if code not set respond with NOT_FOUND
+	          const char *resp = "NOT_FOUND\n";
+	          HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	        }
+	      } else {
+	        // error in GET_CODE command such as invalid index or extra characters
+	        const char *resp = "ERROR\n";
+	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      }
+	    }
+	    else if (strncmp(rxBuffer, "SET_CODE_", 9) == 0) {
+	      // SET_CODE_n:value command: store a new code value
+	    	// the character representing code index
+	      char codeIndexChar = dataBuff[9];
+
+	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && dataBuff[10] == ':') {
+	    	  // target index 0-2
+	        int index = codeIndexChar - '1';
+	        // pointer to the code value after the SET_CODE_n prefix
+	        char *codeValue = &rxBuffer[11];
+	        // save the new code up to MAX_Len characters
+	        if (strlen(codeValue) <= MAX_LEN) {
+	          strcpy(accessCodes[index], codeValue);
+	        } else {
+	          strncpy(accessCodes[index], codeValue, MAX_LEN);
+	          // ensure termination if truncated
+	          accessCodes[index][MAX_LEN] = '\0';
+	        }
+	        // respond to confirm the code is saved
+	        const char *resp = "SAVED\n";
+	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      } else {
+	        // error in SET_CODE command such as missing index or colon
+	        const char *resp = "ERROR\n";
+	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      }
+	    }
+	    else {
+	      // unknown command received respond with generic error
+	      const char *resp = "ERROR\n";
+	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	    }
+
+	    // loop back to wait for the next command line
+	  }
   }
   /* USER CODE END 3 */
 }
