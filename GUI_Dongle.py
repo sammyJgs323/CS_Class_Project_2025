@@ -170,7 +170,7 @@ class DongleLockWindow(QWidget):
         if connection is None or not connection.is_open or connection.port != self.detected_port:
             try:
                 # Open serial connection and initiate handshake
-                self.serial_conn = serial.Serial(self.detected_port, baudrate=115200, timeout=2)
+                self.serial_conn = serial.Serial(port=self.detected_port, baudrate=115200,bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=2)
             except serial.SerialException as exc:
                 self._update_status(f"Serial error: {exc}")
                 self.serial_conn = None
