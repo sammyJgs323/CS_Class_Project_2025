@@ -26,6 +26,9 @@
 #include <string.h>
 #include <stdbool.h>
 #include <stdio.h>
+//for the STM32F4
+#include "stm32f4xx.h"
+#include "stm32f4xx_hal.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -231,7 +234,7 @@ int main(void)
 
 	    // loop back to wait for the next command line
 	  }
-  }
+
   /* USER CODE END 3 */
 }
 
