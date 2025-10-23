@@ -1,4 +1,5 @@
 import sys
+import time
 from typing import Optional
 
 import serial
@@ -14,6 +15,7 @@ from PyQt5.QtWidgets import (
     QInputDialog,
     QGroupBox,
     QTextEdit,
+    QSizePolicy,
 )
 from PyQt5.QtGui import QFont
 
@@ -58,8 +60,9 @@ class DongleLockWindow(QWidget):
 
         self.connect_button = QPushButton("Connect")
         self.connect_button.setStyleSheet("padding: 8px; font-size: 14px;")
-        self.connect_button.setMinimumHeight(32)
+        self.connect_button.setMinimumHeight(50)
         self.connect_button.setMinimumWidth(160)
+        self.connect_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.connect_button.clicked.connect(self.attempt_connection)
 
         connection_layout.addWidget(self.connect_label)
@@ -75,7 +78,11 @@ class DongleLockWindow(QWidget):
             button = QPushButton(f"Get Code {idx}")
             button.setEnabled(False)
             button.setStyleSheet("padding: 8px; font-size: 14px;")
-            button.setMinimumHeight(32)
+            button.setMinimumHeight(50)
+           # self.connect_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+            button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+            button.setMinimumWidth(0)
+            button.setMaximumWidth(16777215)  # ensure no hidden max caps
             button.clicked.connect(lambda _checked, index=idx: self._handle_get_code(index))
             code_layout.addWidget(button)
             self.get_code_buttons.append(button)
@@ -92,14 +99,18 @@ class DongleLockWindow(QWidget):
 
         toggle_test_mode_button = QPushButton("Toggle Test Mode")
         toggle_test_mode_button.setStyleSheet("padding: 8px; font-size: 14px;")
-        toggle_test_mode_button.setMinimumHeight(32)
+        toggle_test_mode_button.setMinimumHeight(50)
         toggle_test_mode_button.setMinimumWidth(160)
+        #self.connect_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        toggle_test_mode_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         toggle_test_mode_button.clicked.connect(self._toggle_test_mode)
 
         self.disconnect_button = QPushButton("Disconnect")
         self.disconnect_button.setEnabled(False)
         self.disconnect_button.setStyleSheet("padding: 8px; font-size: 14px;")
-        self.disconnect_button.setMinimumHeight(32)
+        self.disconnect_button.setMinimumHeight(50)
+        #self.connect_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        self.disconnect_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         self.disconnect_button.clicked.connect(self._handle_disconnect)
 
         settings_layout.addWidget(self.test_mode_label)
@@ -174,7 +185,7 @@ class DongleLockWindow(QWidget):
                 #ensure dtr isnt asserted to avoid unwanted resets
                 self.serial_conn.dtr = False
                 #wait 500ms for stm32 to finish any reset
-                time.sleep(0.5)
+                time.sleep(1)
                 #get rid of any junk that may have been received during reset
                 self.serial_conn.reset_input_buffer()
                 self.serial_conn.reset_output_buffer()
@@ -211,6 +222,8 @@ class DongleLockWindow(QWidget):
                 connection.write(b"CONNECT\r\n")
                 #wait until all bytes are sent
                 connection.flush()
+                #adding a small delay to allow stm32 time to respond
+                time.sleep(0.5)
                 response_bytes = connection.readline()
                 response = response_bytes.decode("utf-8", errors="replace").strip()
             except serial.SerialException as exc:

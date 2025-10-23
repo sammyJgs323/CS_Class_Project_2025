@@ -969,7 +969,7 @@ LOAD C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM3
                 0x08000000                g_pfnVectors
                 0x080001c4                        . = ALIGN (0x4)
 
-.text           0x080001d0     0x2688
+.text           0x080001d0     0x268c
                 0x080001d0                        . = ALIGN (0x4)
  *(.text)
  .text          0x080001d0       0x40 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
@@ -994,406 +994,405 @@ LOAD C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM3
                 0x08000674        0x4 build/main.o
                 0x08000674                Error_Handler
  .text.MX_USART1_UART_Init
-                0x08000678       0x8c build/main.o
+                0x08000678       0x90 build/main.o
  .text.SystemClock_Config
-                0x08000704       0xa4 build/main.o
-                0x08000704                SystemClock_Config
- .text.main     0x080007a8      0x1e0 build/main.o
-                0x080007a8                main
+                0x08000708       0xa4 build/main.o
+                0x08000708                SystemClock_Config
+ .text.main     0x080007ac      0x1e0 build/main.o
+                0x080007ac                main
  .text.NMI_Handler
-                0x08000988        0x2 build/stm32f4xx_it.o
-                0x08000988                NMI_Handler
- .text.HardFault_Handler
-                0x0800098a        0x2 build/stm32f4xx_it.o
-                0x0800098a                HardFault_Handler
- .text.MemManage_Handler
                 0x0800098c        0x2 build/stm32f4xx_it.o
-                0x0800098c                MemManage_Handler
- .text.BusFault_Handler
+                0x0800098c                NMI_Handler
+ .text.HardFault_Handler
                 0x0800098e        0x2 build/stm32f4xx_it.o
-                0x0800098e                BusFault_Handler
- .text.UsageFault_Handler
+                0x0800098e                HardFault_Handler
+ .text.MemManage_Handler
                 0x08000990        0x2 build/stm32f4xx_it.o
-                0x08000990                UsageFault_Handler
- .text.SVC_Handler
+                0x08000990                MemManage_Handler
+ .text.BusFault_Handler
                 0x08000992        0x2 build/stm32f4xx_it.o
-                0x08000992                SVC_Handler
- .text.DebugMon_Handler
+                0x08000992                BusFault_Handler
+ .text.UsageFault_Handler
                 0x08000994        0x2 build/stm32f4xx_it.o
-                0x08000994                DebugMon_Handler
- .text.PendSV_Handler
+                0x08000994                UsageFault_Handler
+ .text.SVC_Handler
                 0x08000996        0x2 build/stm32f4xx_it.o
-                0x08000996                PendSV_Handler
+                0x08000996                SVC_Handler
+ .text.DebugMon_Handler
+                0x08000998        0x2 build/stm32f4xx_it.o
+                0x08000998                DebugMon_Handler
+ .text.PendSV_Handler
+                0x0800099a        0x2 build/stm32f4xx_it.o
+                0x0800099a                PendSV_Handler
  .text.SysTick_Handler
-                0x08000998        0x8 build/stm32f4xx_it.o
-                0x08000998                SysTick_Handler
+                0x0800099c        0x8 build/stm32f4xx_it.o
+                0x0800099c                SysTick_Handler
  .text.USART1_IRQHandler
-                0x080009a0       0x10 build/stm32f4xx_it.o
-                0x080009a0                USART1_IRQHandler
+                0x080009a4       0x10 build/stm32f4xx_it.o
+                0x080009a4                USART1_IRQHandler
  .text.HAL_MspInit
-                0x080009b0       0x38 build/stm32f4xx_hal_msp.o
-                0x080009b0                HAL_MspInit
+                0x080009b4       0x38 build/stm32f4xx_hal_msp.o
+                0x080009b4                HAL_MspInit
  .text.HAL_UART_MspInit
-                0x080009e8       0x80 build/stm32f4xx_hal_msp.o
-                0x080009e8                HAL_UART_MspInit
+                0x080009ec       0x80 build/stm32f4xx_hal_msp.o
+                0x080009ec                HAL_UART_MspInit
  .text.UART_EndRxTransfer
-                0x08000a68       0x5c build/stm32f4xx_hal_uart.o
+                0x08000a6c       0x5c build/stm32f4xx_hal_uart.o
  .text.UART_Transmit_IT
-                0x08000ac4       0x60 build/stm32f4xx_hal_uart.o
+                0x08000ac8       0x60 build/stm32f4xx_hal_uart.o
  .text.UART_SetConfig
-                0x08000b24      0x110 build/stm32f4xx_hal_uart.o
+                0x08000b28      0x110 build/stm32f4xx_hal_uart.o
  .text.UART_WaitOnFlagUntilTimeout
-                0x08000c34       0x86 build/stm32f4xx_hal_uart.o
+                0x08000c38       0x86 build/stm32f4xx_hal_uart.o
  .text.HAL_UART_Init
-                0x08000cba       0x60 build/stm32f4xx_hal_uart.o
-                0x08000cba                HAL_UART_Init
+                0x08000cbe       0x60 build/stm32f4xx_hal_uart.o
+                0x08000cbe                HAL_UART_Init
  .text.HAL_UART_Transmit
-                0x08000d1a       0xcc build/stm32f4xx_hal_uart.o
-                0x08000d1a                HAL_UART_Transmit
+                0x08000d1e       0xcc build/stm32f4xx_hal_uart.o
+                0x08000d1e                HAL_UART_Transmit
  .text.HAL_UART_Receive
-                0x08000de6       0xd2 build/stm32f4xx_hal_uart.o
-                0x08000de6                HAL_UART_Receive
+                0x08000dea       0xd2 build/stm32f4xx_hal_uart.o
+                0x08000dea                HAL_UART_Receive
  .text.HAL_UART_TxCpltCallback
-                0x08000eb8        0x2 build/stm32f4xx_hal_uart.o
-                0x08000eb8                HAL_UART_TxCpltCallback
+                0x08000ebc        0x2 build/stm32f4xx_hal_uart.o
+                0x08000ebc                HAL_UART_TxCpltCallback
  .text.UART_EndTransmit_IT
-                0x08000eba       0x1a build/stm32f4xx_hal_uart.o
+                0x08000ebe       0x1a build/stm32f4xx_hal_uart.o
  .text.HAL_UART_RxCpltCallback
-                0x08000ed4        0x2 build/stm32f4xx_hal_uart.o
-                0x08000ed4                HAL_UART_RxCpltCallback
+                0x08000ed8        0x2 build/stm32f4xx_hal_uart.o
+                0x08000ed8                HAL_UART_RxCpltCallback
  .text.HAL_UART_ErrorCallback
-                0x08000ed6        0x2 build/stm32f4xx_hal_uart.o
-                0x08000ed6                HAL_UART_ErrorCallback
+                0x08000eda        0x2 build/stm32f4xx_hal_uart.o
+                0x08000eda                HAL_UART_ErrorCallback
  .text.UART_DMAAbortOnError
-                0x08000ed8        0xe build/stm32f4xx_hal_uart.o
+                0x08000edc        0xe build/stm32f4xx_hal_uart.o
  .text.HAL_UARTEx_RxEventCallback
-                0x08000ee6        0x2 build/stm32f4xx_hal_uart.o
-                0x08000ee6                HAL_UARTEx_RxEventCallback
+                0x08000eea        0x2 build/stm32f4xx_hal_uart.o
+                0x08000eea                HAL_UARTEx_RxEventCallback
  .text.UART_Receive_IT
-                0x08000ee8       0xe6 build/stm32f4xx_hal_uart.o
- *fill*         0x08000fce        0x2 
+                0x08000eec       0xe6 build/stm32f4xx_hal_uart.o
+ *fill*         0x08000fd2        0x2 
  .text.HAL_UART_IRQHandler
-                0x08000fd0      0x2a0 build/stm32f4xx_hal_uart.o
-                0x08000fd0                HAL_UART_IRQHandler
+                0x08000fd4      0x2a0 build/stm32f4xx_hal_uart.o
+                0x08000fd4                HAL_UART_IRQHandler
  .text.HAL_RCC_ClockConfig
-                0x08001270      0x160 build/stm32f4xx_hal_rcc.o
-                0x08001270                HAL_RCC_ClockConfig
+                0x08001274      0x160 build/stm32f4xx_hal_rcc.o
+                0x08001274                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetHCLKFreq
-                0x080013d0        0xc build/stm32f4xx_hal_rcc.o
-                0x080013d0                HAL_RCC_GetHCLKFreq
+                0x080013d4        0xc build/stm32f4xx_hal_rcc.o
+                0x080013d4                HAL_RCC_GetHCLKFreq
  .text.HAL_RCC_GetPCLK1Freq
-                0x080013dc       0x20 build/stm32f4xx_hal_rcc.o
-                0x080013dc                HAL_RCC_GetPCLK1Freq
+                0x080013e0       0x20 build/stm32f4xx_hal_rcc.o
+                0x080013e0                HAL_RCC_GetPCLK1Freq
  .text.HAL_RCC_GetPCLK2Freq
-                0x080013fc       0x20 build/stm32f4xx_hal_rcc.o
-                0x080013fc                HAL_RCC_GetPCLK2Freq
+                0x08001400       0x20 build/stm32f4xx_hal_rcc.o
+                0x08001400                HAL_RCC_GetPCLK2Freq
  .text.HAL_RCC_GetSysClockFreq
-                0x0800141c      0x128 build/stm32f4xx_hal_rcc_ex.o
-                0x0800141c                HAL_RCC_GetSysClockFreq
+                0x08001420      0x128 build/stm32f4xx_hal_rcc_ex.o
+                0x08001420                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_OscConfig
-                0x08001544      0x444 build/stm32f4xx_hal_rcc_ex.o
-                0x08001544                HAL_RCC_OscConfig
+                0x08001548      0x444 build/stm32f4xx_hal_rcc_ex.o
+                0x08001548                HAL_RCC_OscConfig
  .text.HAL_GPIO_Init
-                0x08001988      0x1e0 build/stm32f4xx_hal_gpio.o
-                0x08001988                HAL_GPIO_Init
+                0x0800198c      0x1e0 build/stm32f4xx_hal_gpio.o
+                0x0800198c                HAL_GPIO_Init
  .text.HAL_GPIO_WritePin
-                0x08001b68        0xc build/stm32f4xx_hal_gpio.o
-                0x08001b68                HAL_GPIO_WritePin
+                0x08001b6c        0xc build/stm32f4xx_hal_gpio.o
+                0x08001b6c                HAL_GPIO_WritePin
  .text.HAL_DMA_Abort
-                0x08001b74       0x94 build/stm32f4xx_hal_dma.o
-                0x08001b74                HAL_DMA_Abort
+                0x08001b78       0x94 build/stm32f4xx_hal_dma.o
+                0x08001b78                HAL_DMA_Abort
  .text.HAL_DMA_Abort_IT
-                0x08001c08       0x26 build/stm32f4xx_hal_dma.o
-                0x08001c08                HAL_DMA_Abort_IT
- *fill*         0x08001c2e        0x2 
+                0x08001c0c       0x26 build/stm32f4xx_hal_dma.o
+                0x08001c0c                HAL_DMA_Abort_IT
+ *fill*         0x08001c32        0x2 
  .text.__NVIC_EnableIRQ
-                0x08001c30       0x1c build/stm32f4xx_hal_cortex.o
+                0x08001c34       0x1c build/stm32f4xx_hal_cortex.o
  .text.__NVIC_SetPriority
-                0x08001c4c       0x28 build/stm32f4xx_hal_cortex.o
+                0x08001c50       0x28 build/stm32f4xx_hal_cortex.o
  .text.NVIC_EncodePriority
-                0x08001c74       0x3e build/stm32f4xx_hal_cortex.o
- *fill*         0x08001cb2        0x2 
+                0x08001c78       0x3e build/stm32f4xx_hal_cortex.o
+ *fill*         0x08001cb6        0x2 
  .text.HAL_NVIC_SetPriorityGrouping
-                0x08001cb4       0x24 build/stm32f4xx_hal_cortex.o
-                0x08001cb4                HAL_NVIC_SetPriorityGrouping
+                0x08001cb8       0x24 build/stm32f4xx_hal_cortex.o
+                0x08001cb8                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x08001cd8       0x20 build/stm32f4xx_hal_cortex.o
-                0x08001cd8                HAL_NVIC_SetPriority
+                0x08001cdc       0x20 build/stm32f4xx_hal_cortex.o
+                0x08001cdc                HAL_NVIC_SetPriority
  .text.HAL_NVIC_EnableIRQ
-                0x08001cf8        0x8 build/stm32f4xx_hal_cortex.o
-                0x08001cf8                HAL_NVIC_EnableIRQ
+                0x08001cfc        0x8 build/stm32f4xx_hal_cortex.o
+                0x08001cfc                HAL_NVIC_EnableIRQ
  .text.HAL_SYSTICK_Config
-                0x08001d00       0x28 build/stm32f4xx_hal_cortex.o
-                0x08001d00                HAL_SYSTICK_Config
+                0x08001d04       0x28 build/stm32f4xx_hal_cortex.o
+                0x08001d04                HAL_SYSTICK_Config
  .text.HAL_InitTick
-                0x08001d28       0x4c build/stm32f4xx_hal.o
-                0x08001d28                HAL_InitTick
+                0x08001d2c       0x4c build/stm32f4xx_hal.o
+                0x08001d2c                HAL_InitTick
  .text.HAL_Init
-                0x08001d74       0x34 build/stm32f4xx_hal.o
-                0x08001d74                HAL_Init
+                0x08001d78       0x34 build/stm32f4xx_hal.o
+                0x08001d78                HAL_Init
  .text.HAL_IncTick
-                0x08001da8       0x18 build/stm32f4xx_hal.o
-                0x08001da8                HAL_IncTick
+                0x08001dac       0x18 build/stm32f4xx_hal.o
+                0x08001dac                HAL_IncTick
  .text.HAL_GetTick
-                0x08001dc0        0xc build/stm32f4xx_hal.o
-                0x08001dc0                HAL_GetTick
+                0x08001dc4        0xc build/stm32f4xx_hal.o
+                0x08001dc4                HAL_GetTick
  .text.SystemInit
-                0x08001dcc       0x14 build/system_stm32f4xx.o
-                0x08001dcc                SystemInit
- .text._sbrk    0x08001de0       0x48 build/sysmem.o
-                0x08001de0                _sbrk
+                0x08001dd0       0x14 build/system_stm32f4xx.o
+                0x08001dd0                SystemInit
+ .text._sbrk    0x08001de4       0x48 build/sysmem.o
+                0x08001de4                _sbrk
  .text.Reset_Handler
-                0x08001e28       0x50 build/startup_stm32f446xx.o
-                0x08001e28                Reset_Handler
+                0x08001e2c       0x50 build/startup_stm32f446xx.o
+                0x08001e2c                Reset_Handler
  .text.Default_Handler
-                0x08001e78        0x2 build/startup_stm32f446xx.o
-                0x08001e78                RTC_Alarm_IRQHandler
-                0x08001e78                EXTI2_IRQHandler
-                0x08001e78                TIM8_CC_IRQHandler
-                0x08001e78                FMPI2C1_EV_IRQHandler
-                0x08001e78                SPI4_IRQHandler
-                0x08001e78                TIM1_CC_IRQHandler
-                0x08001e78                DMA2_Stream5_IRQHandler
-                0x08001e78                DMA1_Stream5_IRQHandler
-                0x08001e78                PVD_IRQHandler
-                0x08001e78                SDIO_IRQHandler
-                0x08001e78                TAMP_STAMP_IRQHandler
-                0x08001e78                CAN2_RX1_IRQHandler
-                0x08001e78                EXTI3_IRQHandler
-                0x08001e78                TIM8_TRG_COM_TIM14_IRQHandler
-                0x08001e78                TIM1_UP_TIM10_IRQHandler
-                0x08001e78                TIM8_UP_TIM13_IRQHandler
-                0x08001e78                I2C3_ER_IRQHandler
-                0x08001e78                EXTI0_IRQHandler
-                0x08001e78                I2C2_EV_IRQHandler
-                0x08001e78                DMA1_Stream2_IRQHandler
-                0x08001e78                CAN1_RX0_IRQHandler
-                0x08001e78                FPU_IRQHandler
-                0x08001e78                OTG_HS_WKUP_IRQHandler
-                0x08001e78                CAN2_SCE_IRQHandler
-                0x08001e78                DMA2_Stream2_IRQHandler
-                0x08001e78                SPI1_IRQHandler
-                0x08001e78                TIM6_DAC_IRQHandler
-                0x08001e78                TIM1_BRK_TIM9_IRQHandler
-                0x08001e78                DCMI_IRQHandler
-                0x08001e78                CAN2_RX0_IRQHandler
-                0x08001e78                DMA2_Stream3_IRQHandler
-                0x08001e78                SAI2_IRQHandler
-                0x08001e78                USART6_IRQHandler
-                0x08001e78                USART3_IRQHandler
-                0x08001e78                CAN1_RX1_IRQHandler
-                0x08001e78                UART5_IRQHandler
-                0x08001e78                DMA2_Stream0_IRQHandler
-                0x08001e78                TIM4_IRQHandler
-                0x08001e78                QUADSPI_IRQHandler
-                0x08001e78                I2C1_EV_IRQHandler
-                0x08001e78                DMA1_Stream6_IRQHandler
-                0x08001e78                DMA1_Stream1_IRQHandler
-                0x08001e78                UART4_IRQHandler
-                0x08001e78                TIM3_IRQHandler
-                0x08001e78                RCC_IRQHandler
-                0x08001e78                TIM8_BRK_TIM12_IRQHandler
-                0x08001e78                Default_Handler
-                0x08001e78                CEC_IRQHandler
-                0x08001e78                EXTI15_10_IRQHandler
-                0x08001e78                ADC_IRQHandler
-                0x08001e78                DMA1_Stream7_IRQHandler
-                0x08001e78                TIM7_IRQHandler
-                0x08001e78                CAN2_TX_IRQHandler
-                0x08001e78                TIM5_IRQHandler
-                0x08001e78                DMA2_Stream7_IRQHandler
-                0x08001e78                I2C3_EV_IRQHandler
-                0x08001e78                EXTI9_5_IRQHandler
-                0x08001e78                RTC_WKUP_IRQHandler
-                0x08001e78                SPDIF_RX_IRQHandler
-                0x08001e78                SPI2_IRQHandler
-                0x08001e78                OTG_HS_EP1_IN_IRQHandler
-                0x08001e78                DMA1_Stream0_IRQHandler
-                0x08001e78                CAN1_TX_IRQHandler
-                0x08001e78                FMPI2C1_ER_IRQHandler
-                0x08001e78                EXTI4_IRQHandler
-                0x08001e78                OTG_HS_EP1_OUT_IRQHandler
-                0x08001e78                WWDG_IRQHandler
-                0x08001e78                TIM2_IRQHandler
-                0x08001e78                OTG_FS_WKUP_IRQHandler
-                0x08001e78                TIM1_TRG_COM_TIM11_IRQHandler
-                0x08001e78                OTG_HS_IRQHandler
-                0x08001e78                EXTI1_IRQHandler
-                0x08001e78                USART2_IRQHandler
-                0x08001e78                I2C2_ER_IRQHandler
-                0x08001e78                DMA2_Stream1_IRQHandler
-                0x08001e78                CAN1_SCE_IRQHandler
-                0x08001e78                FLASH_IRQHandler
-                0x08001e78                DMA2_Stream4_IRQHandler
-                0x08001e78                OTG_FS_IRQHandler
-                0x08001e78                SPI3_IRQHandler
-                0x08001e78                DMA1_Stream4_IRQHandler
-                0x08001e78                I2C1_ER_IRQHandler
-                0x08001e78                FMC_IRQHandler
-                0x08001e78                DMA2_Stream6_IRQHandler
-                0x08001e78                SAI1_IRQHandler
-                0x08001e78                DMA1_Stream3_IRQHandler
- *fill*         0x08001e7a        0x2 
+                0x08001e7c        0x2 build/startup_stm32f446xx.o
+                0x08001e7c                RTC_Alarm_IRQHandler
+                0x08001e7c                EXTI2_IRQHandler
+                0x08001e7c                TIM8_CC_IRQHandler
+                0x08001e7c                FMPI2C1_EV_IRQHandler
+                0x08001e7c                SPI4_IRQHandler
+                0x08001e7c                TIM1_CC_IRQHandler
+                0x08001e7c                DMA2_Stream5_IRQHandler
+                0x08001e7c                DMA1_Stream5_IRQHandler
+                0x08001e7c                PVD_IRQHandler
+                0x08001e7c                SDIO_IRQHandler
+                0x08001e7c                TAMP_STAMP_IRQHandler
+                0x08001e7c                CAN2_RX1_IRQHandler
+                0x08001e7c                EXTI3_IRQHandler
+                0x08001e7c                TIM8_TRG_COM_TIM14_IRQHandler
+                0x08001e7c                TIM1_UP_TIM10_IRQHandler
+                0x08001e7c                TIM8_UP_TIM13_IRQHandler
+                0x08001e7c                I2C3_ER_IRQHandler
+                0x08001e7c                EXTI0_IRQHandler
+                0x08001e7c                I2C2_EV_IRQHandler
+                0x08001e7c                DMA1_Stream2_IRQHandler
+                0x08001e7c                CAN1_RX0_IRQHandler
+                0x08001e7c                FPU_IRQHandler
+                0x08001e7c                OTG_HS_WKUP_IRQHandler
+                0x08001e7c                CAN2_SCE_IRQHandler
+                0x08001e7c                DMA2_Stream2_IRQHandler
+                0x08001e7c                SPI1_IRQHandler
+                0x08001e7c                TIM6_DAC_IRQHandler
+                0x08001e7c                TIM1_BRK_TIM9_IRQHandler
+                0x08001e7c                DCMI_IRQHandler
+                0x08001e7c                CAN2_RX0_IRQHandler
+                0x08001e7c                DMA2_Stream3_IRQHandler
+                0x08001e7c                SAI2_IRQHandler
+                0x08001e7c                USART6_IRQHandler
+                0x08001e7c                USART3_IRQHandler
+                0x08001e7c                CAN1_RX1_IRQHandler
+                0x08001e7c                UART5_IRQHandler
+                0x08001e7c                DMA2_Stream0_IRQHandler
+                0x08001e7c                TIM4_IRQHandler
+                0x08001e7c                QUADSPI_IRQHandler
+                0x08001e7c                I2C1_EV_IRQHandler
+                0x08001e7c                DMA1_Stream6_IRQHandler
+                0x08001e7c                DMA1_Stream1_IRQHandler
+                0x08001e7c                UART4_IRQHandler
+                0x08001e7c                TIM3_IRQHandler
+                0x08001e7c                RCC_IRQHandler
+                0x08001e7c                TIM8_BRK_TIM12_IRQHandler
+                0x08001e7c                Default_Handler
+                0x08001e7c                CEC_IRQHandler
+                0x08001e7c                EXTI15_10_IRQHandler
+                0x08001e7c                ADC_IRQHandler
+                0x08001e7c                DMA1_Stream7_IRQHandler
+                0x08001e7c                TIM7_IRQHandler
+                0x08001e7c                CAN2_TX_IRQHandler
+                0x08001e7c                TIM5_IRQHandler
+                0x08001e7c                DMA2_Stream7_IRQHandler
+                0x08001e7c                I2C3_EV_IRQHandler
+                0x08001e7c                EXTI9_5_IRQHandler
+                0x08001e7c                RTC_WKUP_IRQHandler
+                0x08001e7c                SPDIF_RX_IRQHandler
+                0x08001e7c                SPI2_IRQHandler
+                0x08001e7c                OTG_HS_EP1_IN_IRQHandler
+                0x08001e7c                DMA1_Stream0_IRQHandler
+                0x08001e7c                CAN1_TX_IRQHandler
+                0x08001e7c                FMPI2C1_ER_IRQHandler
+                0x08001e7c                EXTI4_IRQHandler
+                0x08001e7c                OTG_HS_EP1_OUT_IRQHandler
+                0x08001e7c                WWDG_IRQHandler
+                0x08001e7c                TIM2_IRQHandler
+                0x08001e7c                OTG_FS_WKUP_IRQHandler
+                0x08001e7c                TIM1_TRG_COM_TIM11_IRQHandler
+                0x08001e7c                OTG_HS_IRQHandler
+                0x08001e7c                EXTI1_IRQHandler
+                0x08001e7c                USART2_IRQHandler
+                0x08001e7c                I2C2_ER_IRQHandler
+                0x08001e7c                DMA2_Stream1_IRQHandler
+                0x08001e7c                CAN1_SCE_IRQHandler
+                0x08001e7c                FLASH_IRQHandler
+                0x08001e7c                DMA2_Stream4_IRQHandler
+                0x08001e7c                OTG_FS_IRQHandler
+                0x08001e7c                SPI3_IRQHandler
+                0x08001e7c                DMA1_Stream4_IRQHandler
+                0x08001e7c                I2C1_ER_IRQHandler
+                0x08001e7c                FMC_IRQHandler
+                0x08001e7c                DMA2_Stream6_IRQHandler
+                0x08001e7c                SAI1_IRQHandler
+                0x08001e7c                DMA1_Stream3_IRQHandler
+ *fill*         0x08001e7e        0x2 
  .text.snprintf
-                0x08001e7c       0x6c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-snprintf.o)
-                0x08001e7c                sniprintf
-                0x08001e7c                snprintf
- .text.memset   0x08001ee8       0x10 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
-                0x08001ee8                memset
- .text.strncmp  0x08001ef8       0x24 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strncmp.o)
-                0x08001ef8                strncmp
- .text.strncpy  0x08001f1c       0x26 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strncpy.o)
-                0x08001f1c                strncpy
- *fill*         0x08001f42        0x2 
- .text.__errno  0x08001f44        0xc C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-errno.o)
-                0x08001f44                __errno
+                0x08001e80       0x6c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-snprintf.o)
+                0x08001e80                sniprintf
+                0x08001e80                snprintf
+ .text.memset   0x08001eec       0x10 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
+                0x08001eec                memset
+ .text.strncmp  0x08001efc       0x24 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strncmp.o)
+                0x08001efc                strncmp
+ .text.strncpy  0x08001f20       0x26 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strncpy.o)
+                0x08001f20                strncpy
+ *fill*         0x08001f46        0x2 
+ .text.__errno  0x08001f48        0xc C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-errno.o)
+                0x08001f48                __errno
  .text.__libc_init_array
-                0x08001f50       0x48 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
-                0x08001f50                __libc_init_array
+                0x08001f54       0x48 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+                0x08001f54                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x08001f98        0x2 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x08001f98                __retarget_lock_acquire_recursive
+                0x08001f9c        0x2 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x08001f9c                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x08001f9a        0x2 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
-                0x08001f9a                __retarget_lock_release_recursive
- .text.strcpy   0x08001f9c       0x10 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strcpy.o)
-                0x08001f9c                strcpy
- .text._free_r  0x08001fac       0x94 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-freer.o)
-                0x08001fac                _free_r
+                0x08001f9e        0x2 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lock.o)
+                0x08001f9e                __retarget_lock_release_recursive
+ .text.strcpy   0x08001fa0       0x10 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strcpy.o)
+                0x08001fa0                strcpy
+ .text._free_r  0x08001fb0       0x94 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-freer.o)
+                0x08001fb0                _free_r
  .text.sbrk_aligned
-                0x08002040       0x44 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x08002044       0x44 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
  .text._malloc_r
-                0x08002084      0x100 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
-                0x08002084                _malloc_r
+                0x08002088      0x100 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mallocr.o)
+                0x08002088                _malloc_r
  .text.__malloc_lock
-                0x08002184        0xc C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
-                0x08002184                __malloc_lock
+                0x08002188        0xc C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
+                0x08002188                __malloc_lock
  .text.__malloc_unlock
-                0x08002190        0xc C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
-                0x08002190                __malloc_unlock
+                0x08002194        0xc C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-mlock.o)
+                0x08002194                __malloc_unlock
  .text.__ssputs_r
-                0x0800219c       0xb6 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
-                0x0800219c                __ssputs_r
- *fill*         0x08002252        0x2 
+                0x080021a0       0xb6 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
+                0x080021a0                __ssputs_r
+ *fill*         0x08002256        0x2 
  .text._svfprintf_r
-                0x08002254      0x1f8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
-                0x08002254                _svfiprintf_r
-                0x08002254                _svfprintf_r
+                0x08002258      0x1f8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
+                0x08002258                _svfiprintf_r
+                0x08002258                _svfprintf_r
  .text._printf_common
-                0x0800244c       0xda C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
-                0x0800244c                _printf_common
- *fill*         0x08002526        0x2 
+                0x08002450       0xda C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x08002450                _printf_common
+ *fill*         0x0800252a        0x2 
  .text._printf_i
-                0x08002528      0x23c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
-                0x08002528                _printf_i
- .text.memmove  0x08002764       0x34 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memmove.o)
-                0x08002764                memmove
- .text._sbrk_r  0x08002798       0x20 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-sbrkr.o)
-                0x08002798                _sbrk_r
- .text.memcpy   0x080027b8       0x1c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
-                0x080027b8                memcpy
+                0x0800252c      0x23c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x0800252c                _printf_i
+ .text.memmove  0x08002768       0x34 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memmove.o)
+                0x08002768                memmove
+ .text._sbrk_r  0x0800279c       0x20 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-sbrkr.o)
+                0x0800279c                _sbrk_r
+ .text.memcpy   0x080027bc       0x1c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memcpy-stub.o)
+                0x080027bc                memcpy
  .text._realloc_r
-                0x080027d4       0x5c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reallocr.o)
-                0x080027d4                _realloc_r
+                0x080027d8       0x5c C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-reallocr.o)
+                0x080027d8                _realloc_r
  .text._malloc_usable_size_r
-                0x08002830       0x10 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-msizer.o)
-                0x08002830                _malloc_usable_size_r
+                0x08002834       0x10 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-msizer.o)
+                0x08002834                _malloc_usable_size_r
  *(.glue_7)
- .glue_7        0x08002840        0x0 linker stubs
+ .glue_7        0x08002844        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08002840        0x0 linker stubs
+ .glue_7t       0x08002844        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08002840        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x08002844        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x08002840        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x08002840                _init
- .init          0x08002844        0x8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x08002844        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x08002844                _init
+ .init          0x08002848        0x8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x0800284c        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x0800284c                _fini
- .fini          0x08002850        0x8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
-                0x08002858                        . = ALIGN (0x4)
-                0x08002858                        _etext = .
+ .fini          0x08002850        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x08002850                _fini
+ .fini          0x08002854        0x8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+                0x0800285c                        . = ALIGN (0x4)
+                0x0800285c                        _etext = .
 
-.vfp11_veneer   0x08002858        0x0
- .vfp11_veneer  0x08002858        0x0 linker stubs
+.vfp11_veneer   0x0800285c        0x0
+ .vfp11_veneer  0x0800285c        0x0 linker stubs
 
-.v4_bx          0x08002858        0x0
- .v4_bx         0x08002858        0x0 linker stubs
+.v4_bx          0x0800285c        0x0
+ .v4_bx         0x0800285c        0x0 linker stubs
 
-.iplt           0x08002858        0x0
- .iplt          0x08002858        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x0800285c        0x0
+ .iplt          0x0800285c        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x08002858       0xa4
-                0x08002858                        . = ALIGN (0x4)
+.rodata         0x0800285c       0xa8
+                0x0800285c                        . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.main.str1.4
-                0x08002858       0x57 build/main.o
- *fill*         0x080028af        0x1 
+                0x0800285c       0x5c build/main.o
  .rodata.APBPrescTable
-                0x080028b0        0x8 build/system_stm32f4xx.o
-                0x080028b0                APBPrescTable
+                0x080028b8        0x8 build/system_stm32f4xx.o
+                0x080028b8                APBPrescTable
  .rodata.AHBPrescTable
-                0x080028b8       0x10 build/system_stm32f4xx.o
-                0x080028b8                AHBPrescTable
+                0x080028c0       0x10 build/system_stm32f4xx.o
+                0x080028c0                AHBPrescTable
  .rodata._svfprintf_r.str1.1
-                0x080028c8       0x33 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
+                0x080028d0       0x33 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-svfprintf.o)
                                  0x11 (size before relaxing)
  .rodata._printf_i.str1.1
-                0x080028fb       0x22 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
-                0x08002920                        . = ALIGN (0x4)
- *fill*         0x080028fb        0x1 
+                0x08002903       0x22 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-nano-vfprintf_i.o)
+                0x08002928                        . = ALIGN (0x4)
+ *fill*         0x08002903        0x1 
 
-.ARM.extab      0x080028fc        0x0
-                0x080028fc                        . = ALIGN (0x4)
+.ARM.extab      0x08002904        0x0
+                0x08002904                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x080028fc                        . = ALIGN (0x4)
+                0x08002904                        . = ALIGN (0x4)
 
-.ARM            0x080028fc        0x8
-                0x080028fc                        . = ALIGN (0x4)
-                0x080028fc                        __exidx_start = .
+.ARM            0x08002904        0x8
+                0x08002904                        . = ALIGN (0x4)
+                0x08002904                        __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x080028fc        0x8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strcmp.o)
- .ARM.exidx     0x08002904        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strlen.o)
+ .ARM.exidx     0x08002904        0x8 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strcmp.o)
+ .ARM.exidx     0x0800290c        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-strlen.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x08002904        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
+ .ARM.exidx     0x0800290c        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memchr.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x08002904        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .ARM.exidx     0x0800290c        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
                                   0x8 (size before relaxing)
-                0x08002904                        __exidx_end = .
-                0x08002904                        . = ALIGN (0x4)
+                0x0800290c                        __exidx_end = .
+                0x0800290c                        . = ALIGN (0x4)
 
-.preinit_array  0x08002904        0x0
-                0x08002904                        . = ALIGN (0x4)
-                0x08002904                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0800290c        0x0
+                0x0800290c                        . = ALIGN (0x4)
+                0x0800290c                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08002904                        PROVIDE (__preinit_array_end = .)
-                0x08002904                        . = ALIGN (0x4)
+                0x0800290c                        PROVIDE (__preinit_array_end = .)
+                0x0800290c                        . = ALIGN (0x4)
 
-.init_array     0x08002904        0x4
-                0x08002904                        . = ALIGN (0x4)
-                0x08002904                        PROVIDE (__init_array_start = .)
+.init_array     0x0800290c        0x4
+                0x0800290c                        . = ALIGN (0x4)
+                0x0800290c                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x08002904        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
-                0x08002908                        PROVIDE (__init_array_end = .)
-                0x08002908                        . = ALIGN (0x4)
+ .init_array    0x0800290c        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x08002910                        PROVIDE (__init_array_end = .)
+                0x08002910                        . = ALIGN (0x4)
 
-.fini_array     0x08002908        0x4
-                0x08002908                        . = ALIGN (0x4)
+.fini_array     0x08002910        0x4
+                0x08002910                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08002908        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .fini_array    0x08002910        0x4 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x0800290c                        . = ALIGN (0x4)
-                0x0800290c                        _sidata = LOADADDR (.data)
+                0x08002914                        . = ALIGN (0x4)
+                0x08002914                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x0800290c        0x0
- .rel.iplt      0x0800290c        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x08002914        0x0
+ .rel.iplt      0x08002914        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.data           0x20000000       0x5c load address 0x0800290c
+.data           0x20000000       0x5c load address 0x08002914
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -1419,11 +1418,11 @@ LOAD C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM3
                 0x2000005c                        . = ALIGN (0x4)
                 0x2000005c                        _edata = .
 
-.igot.plt       0x2000005c        0x0 load address 0x08002968
+.igot.plt       0x2000005c        0x0 load address 0x08002970
  .igot.plt      0x2000005c        0x0 C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 0x2000005c                        . = ALIGN (0x4)
 
-.bss            0x2000005c      0x1b4 load address 0x08002968
+.bss            0x2000005c      0x1b4 load address 0x08002970
                 0x2000005c                        _sbss = .
                 0x2000005c                        __bss_start__ = _sbss
  *(.bss)
@@ -1455,7 +1454,7 @@ LOAD C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM3
                 0x20000210                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000210      0x600 load address 0x08002968
+                0x20000210      0x600 load address 0x08002970
                 0x20000210                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
                 0x20000210                        PROVIDE (_end = .)
@@ -1579,20 +1578,20 @@ LOAD C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM3
  .comment       0x00000043       0x44 build/system_stm32f4xx.o
  .comment       0x00000043       0x44 build/sysmem.o
 
-.debug_info     0x00000000     0xc1ee
- .debug_info    0x00000000     0x1538 build/main.o
- .debug_info    0x00001538      0x74e build/stm32f4xx_it.o
- .debug_info    0x00001c86      0xddd build/stm32f4xx_hal_msp.o
- .debug_info    0x00002a63     0x43b5 build/stm32f4xx_hal_uart.o
- .debug_info    0x00006e18      0xc73 build/stm32f4xx_hal_rcc.o
- .debug_info    0x00007a8b      0xddc build/stm32f4xx_hal_rcc_ex.o
- .debug_info    0x00008867      0x8ac build/stm32f4xx_hal_gpio.o
- .debug_info    0x00009113      0xbce build/stm32f4xx_hal_dma.o
- .debug_info    0x00009ce1     0x11fe build/stm32f4xx_hal_cortex.o
- .debug_info    0x0000aedf      0xb5c build/stm32f4xx_hal.o
- .debug_info    0x0000ba3b      0x5f7 build/system_stm32f4xx.o
- .debug_info    0x0000c032      0x18c build/sysmem.o
- .debug_info    0x0000c1be       0x30 build/startup_stm32f446xx.o
+.debug_info     0x00000000     0xc1f2
+ .debug_info    0x00000000     0x153c build/main.o
+ .debug_info    0x0000153c      0x74e build/stm32f4xx_it.o
+ .debug_info    0x00001c8a      0xddd build/stm32f4xx_hal_msp.o
+ .debug_info    0x00002a67     0x43b5 build/stm32f4xx_hal_uart.o
+ .debug_info    0x00006e1c      0xc73 build/stm32f4xx_hal_rcc.o
+ .debug_info    0x00007a8f      0xddc build/stm32f4xx_hal_rcc_ex.o
+ .debug_info    0x0000886b      0x8ac build/stm32f4xx_hal_gpio.o
+ .debug_info    0x00009117      0xbce build/stm32f4xx_hal_dma.o
+ .debug_info    0x00009ce5     0x11fe build/stm32f4xx_hal_cortex.o
+ .debug_info    0x0000aee3      0xb5c build/stm32f4xx_hal.o
+ .debug_info    0x0000ba3f      0x5f7 build/system_stm32f4xx.o
+ .debug_info    0x0000c036      0x18c build/sysmem.o
+ .debug_info    0x0000c1c2       0x30 build/startup_stm32f446xx.o
 
 .debug_abbrev   0x00000000     0x1c2e
  .debug_abbrev  0x00000000      0x2d9 build/main.o
@@ -1666,20 +1665,20 @@ LOAD C:/Users/PFFTAH001/OneDrive - University of Cape Town/Desktop/EEE3095S/STM3
  .debug_ranges  0x000006a0       0x10 build/sysmem.o
  .debug_ranges  0x000006b0       0x20 build/startup_stm32f446xx.o
 
-.debug_line     0x00000000     0x99be
- .debug_line    0x00000000      0x961 build/main.o
- .debug_line    0x00000961      0x3dc build/stm32f4xx_it.o
- .debug_line    0x00000d3d      0x3d4 build/stm32f4xx_hal_msp.o
- .debug_line    0x00001111     0x365a build/stm32f4xx_hal_uart.o
- .debug_line    0x0000476b      0xd0e build/stm32f4xx_hal_rcc.o
- .debug_line    0x00005479     0x15bc build/stm32f4xx_hal_rcc_ex.o
- .debug_line    0x00006a35      0x82b build/stm32f4xx_hal_gpio.o
- .debug_line    0x00007260      0xf7d build/stm32f4xx_hal_dma.o
- .debug_line    0x000081dd      0x974 build/stm32f4xx_hal_cortex.o
- .debug_line    0x00008b51      0x6b1 build/stm32f4xx_hal.o
- .debug_line    0x00009202      0x398 build/system_stm32f4xx.o
- .debug_line    0x0000959a      0x3b1 build/sysmem.o
- .debug_line    0x0000994b       0x73 build/startup_stm32f446xx.o
+.debug_line     0x00000000     0x99cb
+ .debug_line    0x00000000      0x96e build/main.o
+ .debug_line    0x0000096e      0x3dc build/stm32f4xx_it.o
+ .debug_line    0x00000d4a      0x3d4 build/stm32f4xx_hal_msp.o
+ .debug_line    0x0000111e     0x365a build/stm32f4xx_hal_uart.o
+ .debug_line    0x00004778      0xd0e build/stm32f4xx_hal_rcc.o
+ .debug_line    0x00005486     0x15bc build/stm32f4xx_hal_rcc_ex.o
+ .debug_line    0x00006a42      0x82b build/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000726d      0xf7d build/stm32f4xx_hal_dma.o
+ .debug_line    0x000081ea      0x974 build/stm32f4xx_hal_cortex.o
+ .debug_line    0x00008b5e      0x6b1 build/stm32f4xx_hal.o
+ .debug_line    0x0000920f      0x398 build/system_stm32f4xx.o
+ .debug_line    0x000095a7      0x3b1 build/sysmem.o
+ .debug_line    0x00009958       0x73 build/startup_stm32f446xx.o
 
 .debug_str      0x00000000     0x28e0
  .debug_str     0x00000000     0x28e0 build/main.o

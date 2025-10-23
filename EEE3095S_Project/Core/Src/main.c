@@ -115,7 +115,7 @@ int main(void)
   bool connected = false;
 
   //buffer for incoming UART data/ commands
-  char dataBuff[128];
+  char rxBuffer[128];
 
   /* USER CODE END 2 */
 
@@ -138,84 +138,83 @@ int main(void)
 	    	  // skip carriage return if present
 	        continue;
 	      }
-	      if (c == '\n') {
+	      if (c == '\r' || c == '\n') {
 	    	  // newline indicates end of command
 	        break;
 	      }
-	      if (i < sizeof(dataBuff) - 1) {
+	      if (i < sizeof(rxBuffer) - 1) {
 	    	  // append character to buffer if space allows
-	        dataBuff[i++] = c;
+	        rxBuffer[i++] = c;
 	      } else {
 	        // buffer overflow if line too long then truncate and break
-	        dataBuff[i] = '\0';
+	    	  rxBuffer[i] = '\0';
 	        break;
 	      }
 	    } while (1);
 	    // null-terminate the received string
-	    dataBuff[i] = '\0';
+	    rxBuffer[i] = '\0';
 
-	    //parse and handle the command in dataBuff
-	    if (strcmp(dataBuff, "CONNECT") == 0) {
+	    //parse and handle the command in rxBuff
+	    if (strcmp(rxBuffer, "CONNECT") == 0) {
 	      // CONNECT command: establish connection
 	      connected = true;
 	      const char *resp = "OK\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	      //ensures register is cleared
-	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	    }
 	    else if (!connected) {
 	      // if not connected yet, only CONNECT is valid and respond with error for any other command
 	      const char *resp = "ERROR\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	    }
-	    else if (strcmp(dataBuff, "DISCONNECT") == 0) {
+	    else if (strcmp(rxBuffer, "DISCONNECT") == 0) {
 	      // DISCONNECT command: end session
 	      connected = false;
 	      const char *resp = "OK\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	      // after disconnect the device stays running and can accept a new CONNECT
 	    }
-	    else if (strncmp(dataBuff, "GET_CODE_", 9) == 0) {
+	    else if (strncmp(rxBuffer, "GET_CODE_", 9) == 0) {
 	      // GET_CODE_n command: retrieve a code if it exists
 	      // expect exactly one digit (1-3) after "GET_CODE_"
 	    	// the character representing code index
-	      char codeIndexChar = dataBuff[9];
+	      char codeIndexChar = rxBuffer[9];
 
-	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && dataBuff[10] == '\0') {
+	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && rxBuffer[10] == '\0') {
 	    	  // convert '1','2','3' to 0,1,2
 	        int idx = codeIndexChar - '1';
 
 	        if (accessCodes[idx][0] != '\0') {
 	          // if code exists send it back prefixed with "CODE:"
-	          char codeBuff[128];
-	          snprintf(codeBuff, sizeof(codeBuff), "CODE:%s\n", accessCodes[idx]);
-	          HAL_UART_Transmit(&huart1, (uint8_t*)codeBuff, strlen(codeBuff), HAL_MAX_DELAY);
-	          __HAL_UART_FLUSH_DRREGISTER(&huart1);
+	          char txBuffer[128];
+	          snprintf(txBuffer, sizeof(txBuffer), "CODE:%s\r\n", accessCodes[idx]);
+	          HAL_UART_Transmit(&huart1, (uint8_t*)txBuffer, strlen(txBuffer), HAL_MAX_DELAY);
+
 	        } else {
 	          // if code not set respond with NOT_FOUND
 	          const char *resp = "NOT_FOUND\r\n";
 	          HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	          __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	        }
 	      } else {
 	        // error in GET_CODE command such as invalid index or extra characters
 	        const char *resp = "ERROR\r\n";
 	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	        __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	      }
 	    }
-	    else if (strncmp(dataBuff, "SET_CODE_", 9) == 0) {
+	    else if (strncmp(rxBuffer, "SET_CODE_", 9) == 0) {
 	      // SET_CODE_n:value command: store a new code value
 	    	// the character representing code index
-	      char codeIndexChar = dataBuff[9];
+	      char codeIndexChar = rxBuffer[9];
 
-	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && dataBuff[10] == ':') {
+	      if ((codeIndexChar >= '1' && codeIndexChar <= '3') && rxBuffer[10] == ':') {
 	    	  // target index 0-2
 	        int idx = codeIndexChar - '1';
 	        // pointer to the code value after the SET_CODE_n prefix
-	        char *codeValue = &dataBuff[11];
+	        char *codeValue = &rxBuffer[11];
 	        // save the new code up to MAX_Len characters
 	        if (strlen(codeValue) <= MAX_LEN) {
 	          strcpy(accessCodes[idx], codeValue);
@@ -227,19 +226,19 @@ int main(void)
 	        // respond to confirm the code is saved
 	        const char *resp = "SAVED\r\n";
 	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	        __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	      } else {
 	        // error in SET_CODE command such as missing index or colon
 	        const char *resp = "ERROR\r\n";
 	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	        __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	      }
 	    }
 	    else {
 	      // unknown command received respond with generic error
 	      const char *resp = "ERROR\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
-	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
+
 	    }
 
 	    // loop back to wait for the next command line
@@ -260,7 +259,7 @@ void SystemClock_Config(void)
   /** Configure the main internal regulator output voltage
   */
   __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -294,7 +293,7 @@ void SystemClock_Config(void)
   //APB2=84 MHz
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -319,7 +318,7 @@ static void MX_USART1_UART_Init(void)
 	  // push-pull alternate function
 	  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
 	  // no pull-up or pull-down resistors
-	  GPIO_InitStruct.Pull = GPIO_NOPULL;
+	  GPIO_InitStruct.Pull = GPIO_PULLUP;
 	  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
 	  // AF7 for USART1 pins
 	  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
