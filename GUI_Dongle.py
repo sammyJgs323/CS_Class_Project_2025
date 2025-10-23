@@ -170,7 +170,14 @@ class DongleLockWindow(QWidget):
         if connection is None or not connection.is_open or connection.port != self.detected_port:
             try:
                 # Open serial connection and initiate handshake
-                self.serial_conn = serial.Serial(port=self.detected_port, baudrate=115200,bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=2)
+                self.serial_conn = serial.Serial(port=self.detected_port, baudrate=115200,bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=2,dsrdtr=False,rtscts=False)
+                #ensure dtr isnt asserted to avoid unwanted resets
+                self.serial_conn.dtr = False
+                #wait 500ms for stm32 to finish any reset
+                time.sleep(0.5)
+                #get rid of any junk that may have been received during reset
+                self.serial_conn.reset_input_buffer()
+                self.serial_conn.reset_output_buffer()
             except serial.SerialException as exc:
                 self._update_status(f"Serial error: {exc}")
                 self.serial_conn = None
@@ -201,7 +208,9 @@ class DongleLockWindow(QWidget):
             response = "OK"
         else:
             try:
-                connection.write(b"CONNECT\n")
+                connection.write(b"CONNECT\r\n")
+                #wait until all bytes are sent
+                connection.flush()
                 response_bytes = connection.readline()
                 response = response_bytes.decode("utf-8", errors="replace").strip()
             except serial.SerialException as exc:

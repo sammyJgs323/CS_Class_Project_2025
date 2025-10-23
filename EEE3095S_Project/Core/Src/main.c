@@ -158,19 +158,23 @@ int main(void)
 	    if (strcmp(dataBuff, "CONNECT") == 0) {
 	      // CONNECT command: establish connection
 	      connected = true;
-	      const char *resp = "OK\n";
+	      const char *resp = "OK\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      //ensures register is cleared
+	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	    }
 	    else if (!connected) {
 	      // if not connected yet, only CONNECT is valid and respond with error for any other command
-	      const char *resp = "ERROR\n";
+	      const char *resp = "ERROR\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	    }
 	    else if (strcmp(dataBuff, "DISCONNECT") == 0) {
 	      // DISCONNECT command: end session
 	      connected = false;
-	      const char *resp = "OK\n";
+	      const char *resp = "OK\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	      // after disconnect the device stays running and can accept a new CONNECT
 	    }
 	    else if (strncmp(dataBuff, "GET_CODE_", 9) == 0) {
@@ -188,15 +192,18 @@ int main(void)
 	          char codeBuff[128];
 	          snprintf(codeBuff, sizeof(codeBuff), "CODE:%s\n", accessCodes[idx]);
 	          HAL_UART_Transmit(&huart1, (uint8_t*)codeBuff, strlen(codeBuff), HAL_MAX_DELAY);
+	          __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	        } else {
 	          // if code not set respond with NOT_FOUND
-	          const char *resp = "NOT_FOUND\n";
+	          const char *resp = "NOT_FOUND\r\n";
 	          HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	          __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	        }
 	      } else {
 	        // error in GET_CODE command such as invalid index or extra characters
-	        const char *resp = "ERROR\n";
+	        const char *resp = "ERROR\r\n";
 	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	        __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	      }
 	    }
 	    else if (strncmp(dataBuff, "SET_CODE_", 9) == 0) {
@@ -218,18 +225,21 @@ int main(void)
 	          accessCodes[idx][MAX_LEN] = '\0';
 	        }
 	        // respond to confirm the code is saved
-	        const char *resp = "SAVED\n";
+	        const char *resp = "SAVED\r\n";
 	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	        __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	      } else {
 	        // error in SET_CODE command such as missing index or colon
-	        const char *resp = "ERROR\n";
+	        const char *resp = "ERROR\r\n";
 	        HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	        __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	      }
 	    }
 	    else {
 	      // unknown command received respond with generic error
-	      const char *resp = "ERROR\n";
+	      const char *resp = "ERROR\r\n";
 	      HAL_UART_Transmit(&huart1, (uint8_t*)resp, strlen(resp), HAL_MAX_DELAY);
+	      __HAL_UART_FLUSH_DRREGISTER(&huart1);
 	    }
 
 	    // loop back to wait for the next command line
